@@ -39,7 +39,13 @@ const noScroll = {
     placeFocusBack: false,
     dragToClose: false,
     closeExisting: true,
-    closeButtonTpl: `<button data-fancybox-close class="close-btn"><svg class="icon"><use xlink:href="assets/images/svg-sprite.svg?${ver}#close"></use></svg></button>`,
+    closeButtonTpl: `
+    <button data-fancybox-close class="close-btn" aria-label="Close popup">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="assets/images/svg-sprite.svg?${ver}#close"></use>
+      </svg>
+    </button>
+    `,
     on: {
       "Carousel.contentReady": (fancyboxRef, carouselRef, slide) => {
         if (fancyboxRef.isCurrentSlide(slide)) {
@@ -215,19 +221,51 @@ construct(document);
 /* Menu */
 (function () {
   const menuBtn = document.querySelector(".menu-btn");
-  if (menuBtn) {
-    menuBtn.addEventListener("click", function () {
-      noScroll.start();
-      htmlEl.classList.add("is-menu-open");
-    });
+  const menu = document.querySelector(".mob-menu__inner");
+  if (!menuBtn || !menu) return;
+
+  const closeBtn = menu.querySelector(".mob-menu__close");
+  const focusableSelector =
+    "a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex='-1'])";
+
+  function openMenu() {
+    noScroll.start();
+    htmlEl.classList.add("is-menu-open");
+    menuBtn.setAttribute("aria-expanded", "true");
+    if (closeBtn) closeBtn.focus();
   }
 
-  const menuClose = document.querySelectorAll(".mob-menu__close, .mob-menu__bg");
-  menuClose.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      htmlEl.classList.remove("is-menu-open");
-      noScroll.finish();
-    });
+  function closeMenu() {
+    htmlEl.classList.remove("is-menu-open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    noScroll.finish();
+    menuBtn.focus();
+  }
+
+  menuBtn.addEventListener("click", openMenu);
+
+  document.querySelectorAll(".mob-menu__close, .mob-menu__bg").forEach((btn) => {
+    btn.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!htmlEl.classList.contains("is-menu-open")) return;
+
+    if (e.key === "Escape") {
+      closeMenu();
+    } else if (e.key === "Tab") {
+      // Keep keyboard focus inside the open menu
+      const items = menu.querySelectorAll(focusableSelector);
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 })();
 

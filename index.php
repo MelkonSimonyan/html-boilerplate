@@ -4,11 +4,11 @@ require 'blocks/head.php'; ?>
 <body>
 	<?php require 'blocks/header.php'; ?>
 
-	<div class="content">
+	<main class="content" id="main">
 		<div class="container">
 			Content
 		</div>
-	</div>
+	</main>
 
 	<?php require 'blocks/footer.php'; ?>
 	<?php require 'blocks/foot.php'; ?>

@@ -21,6 +21,7 @@ It ships with a set of **global, ready-to-restyle components** (typography, butt
 - **Custom scrollbars** – `.has-scrollbar` (vertical and horizontal), configurable through CSS variables.
 - **Mobile menu** – CSS-only animated drawer, toggled by a class on `<html>`.
 - **Sliders** – Swiper (with a fade + video slider template in `scripts.js`).
+- **Accessible by default** – WCAG AA contrast, landmarks, skip link, focus management (see [Accessibility](#accessibility)).
 - **Helpers** – scroll lock without layout shift, page loader, scroll direction classes, touch detection, breakpoint helper.
 - **Modern CSS** – nesting, `@starting-style`, `appearance: base-select`, `field-sizing`, `:user-invalid`; all with graceful fallbacks.
 
@@ -49,7 +50,7 @@ With XAMPP/MAMP/Laragon, simply put the folder into `htdocs` / `www`.
 ├── ui.php                  # UI Kit – demo of all global elements
 ├── blocks/
 │   ├── head.php            # <head>: meta, favicons, CSS, jQuery, cache-busting $ver
-│   ├── header.php          # Header + mobile menu
+│   ├── header.php          # Skip link, header, accessible mobile menu
 │   ├── footer.php          # Footer
 │   ├── foot.php            # Scripts at the end of <body>
 │   └── formHandler.php     # Demo endpoint for AJAX forms (returns JSON)
@@ -79,14 +80,14 @@ require 'blocks/head.php'; ?>
 <body>
   <?php require 'blocks/header.php'; ?>
 
-  <div class="content">
+  <main class="content" id="main">
     <div class="container">
       <div class="text">
         <h1>About</h1>
         <p>Content…</p>
       </div>
     </div>
-  </div>
+  </main>
 
   <?php require 'blocks/footer.php'; ?>
   <?php require 'blocks/foot.php'; ?>
@@ -95,6 +96,7 @@ require 'blocks/head.php'; ?>
 </html>
 ```
 
+- Keep `id="main"` on the `<main>` element of every page: it is the target of the skip link (`<a class="skip-link" href="#main">`) in `header.php`, which lets keyboard and screen reader users jump past the navigation straight to the content.
 - `$page` is used by `header.php` to mark the active menu item (`is-active`).
 - `$ver` (set in `head.php`) is appended to local CSS/JS URLs as a cache buster. It is `time()` by default, which is handy in development; replace it with a fixed version in production.
 
@@ -209,7 +211,9 @@ Customize with `--scrollbar-track-bg`, `--scrollbar-thumb-bg`, `--scrollbar-size
 **Icons** – add `<symbol>` entries to `assets/images/svg-sprite.svg` and use:
 
 ```html
-<svg class="icon"><use xlink:href="assets/images/svg-sprite.svg#close"></use></svg>
+<svg class="icon" aria-hidden="true">
+  <use xlink:href="assets/images/svg-sprite.svg#close"></use>
+</svg>
 ```
 
 Icon size is controlled with `font-size`, color with `color`.
@@ -245,6 +249,30 @@ Bundled locally in `assets/lib/`:
 | [jQuery Validation](https://jqueryvalidation.org/) (optional, last resort) | 1.19.5 | MIT |
 | [Swiper](https://swiperjs.com/) | 11.1.14 | MIT |
 | [Fancybox](https://fancyapps.com/fancybox/) | 6.1.13 | See [fancyapps.com/license](https://fancyapps.com/license) – a commercial license is required for commercial projects |
+
+## Accessibility
+
+The boilerplate is built to meet **WCAG 2.2 AA** out of the box. What is already handled:
+
+- **Semantic landmarks** – `<header>`, `<nav aria-label="Main">`, `<main id="main">`, `<footer>`, and a **skip link** (`.skip-link`) that appears on keyboard focus.
+- **Keyboard support** – a visible focus ring (`:focus-visible`) for links, buttons and custom checkboxes / radios; text fields and selects indicate focus with a border color change instead of an outline (make sure that change stays clearly visible after restyling). The mobile menu opens with focus moved inside, traps `Tab`, closes with `Esc` and returns focus to the burger button.
+- **Screen readers** – the burger button exposes `aria-label`, `aria-expanded` and `aria-controls`; the current page link gets `aria-current="page"`; decorative icons are `aria-hidden`; icon-only buttons have `aria-label`; validation errors from jQuery Validation are announced via `role="alert"`; popups use `role="dialog"` with `aria-labelledby`.
+- **Color contrast** – default tokens in `var.css` pass AA on white: text ≥ 4.5:1 (`--c-accent`, `--c-error`, `--txt-secondary`) and form control borders ≥ 3:1 (`--border-input`).
+- **Reduced motion** – `prefers-reduced-motion` disables transitions and smooth scrolling.
+- **Forms** – every control in the kit has a visible `<label>`; `autocomplete` attributes are used in the demo forms; native validation works without JavaScript.
+- **Zoom and text size** – no `user-scalable=no`, layout works at 320px width.
+- **Sliders** – Swiper's `a11y` module and keyboard control are enabled in the demo slider.
+
+Things to keep in mind when restyling or building pages:
+
+- **Re-check contrast after changing tokens in `var.css`.** The values you get from a design are the most common source of AA failures: text on `--c-accent` buttons, `--txt-secondary` placeholders, error messages, and input borders. Use a checker such as the [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/).
+- Never remove focus outlines without providing an equally visible replacement.
+- Keep **one `<h1>` per page** and do not skip heading levels (the UI Kit page intentionally shows all heading styles, so it is an exception).
+- Give every `<img>` a meaningful `alt` (or `alt=""` if decorative) and every icon-only control an `aria-label`.
+- Make scrollable regions (`.has-scrollbar`) keyboard accessible with `tabindex="0"`, `role="region"` and an `aria-label`.
+- Use real `<button>` elements for actions and `<a href>` for navigation.
+- Prefer the native-validation form (`.callback-form`); when using jQuery Validation, keep the labels visible and errors adjacent to their fields.
+- Fancybox is configured with `placeFocusBack: false` in `scripts.js`; set it to `true` if you want focus to return to the trigger element after a popup closes.
 
 ## Browser support
 

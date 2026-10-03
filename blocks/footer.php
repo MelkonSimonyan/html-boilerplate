@@ -1,5 +1,5 @@
-<div class="footer">
+<footer class="footer">
   <div class="container">
     Footer
   </div>
-</div>
+</footer>

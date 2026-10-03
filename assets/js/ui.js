@@ -23,6 +23,8 @@ document.querySelectorAll("[data-var]").forEach((el) => {
 new Swiper(".ui-slider", {
   loop: true,
   spaceBetween: 20,
+  a11y: true,
+  keyboard: { enabled: true },
   pagination: { el: ".ui-slider .swiper-pagination", clickable: true },
   navigation: {
     nextEl: ".ui-slider .swiper-button-next",

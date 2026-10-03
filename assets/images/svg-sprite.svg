@@ -4,4 +4,8 @@
   </symbol>
 </svg>
 
-<!-- <svg class="icon"><use xlink:href="assets/images/svg-sprite.svg?<?= $ver; ?>#close"></use></svg> -->
+<!--
+<svg class="icon" aria-hidden="true">
+  <use xlink:href="assets/images/svg-sprite.svg?<?= $ver; ?>#close"></use>
+</svg>
+-->

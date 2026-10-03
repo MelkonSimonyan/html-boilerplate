@@ -1,16 +1,18 @@
 :root {
   --font-main: "Open Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  --c-accent: #1ab394;
+  /* Defaults are WCAG AA compliant on white (>= 4.5:1 for text, >= 3:1 for UI borders). Re-check contrast after changing them. */
+  --c-accent: #0d8069;
   --c-accent2: #7c6bb3;
-  --c-error: #ff0000;
+  --c-error: #d00000;
 
   --txt-primary: #333333;
-  --txt-secondary: #aaaaaa;
+  --txt-secondary: #6b6b6b;
 
   --bg-primary: #ffffff;
 
   --border-primary: #cccccc;
+  --border-input: #8a8a8a;
 
   --text-space: 20px;
 }

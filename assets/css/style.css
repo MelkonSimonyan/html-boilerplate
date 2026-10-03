@@ -103,6 +103,34 @@ html {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *:before,
+  *:after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 15px;
+  top: 0;
+  z-index: 99999999;
+  padding: 10px 20px;
+  background: var(--bg-primary);
+  color: var(--txt-primary);
+  transform: translateY(-100%);
+
+  &:focus {
+    transform: none;
+  }
+}
+
 html.is-noscroll {
   overflow: visible;
   scroll-behavior: auto;
@@ -565,7 +593,7 @@ h6,
   position: relative;
   width: 18px;
   height: 18px;
-  border: 1px solid var(--border-primary);
+  border: 1px solid var(--border-input);
   background: #fff;
 }
 
@@ -575,6 +603,8 @@ h6,
 
 .form-check input:focus-visible ~ .form-check__btn .form-check__icon {
   border-color: var(--c-accent2);
+  outline: 3px solid var(--txt-primary);
+  outline-offset: 2px;
 }
 
 .form-check input.error ~ .form-check__btn .form-check__icon {
@@ -647,7 +677,7 @@ h6,
   font-size: 16px;
   line-height: 24px;
   padding: 13px 15px;
-  border: 1px solid var(--border-primary);
+  border: 1px solid var(--border-input);
   border-radius: 2px;
   background-color: #fff;
   color: var(--txt-primary);
@@ -800,7 +830,7 @@ textarea.form-control {
 
     &::picker(select) {
       appearance: base-select;
-      border: 1px solid var(--border-primary);
+      border: 1px solid var(--border-input);
       border-radius: 2px;
       background-color: #fff;
       padding: 5px;

@@ -16,7 +16,7 @@
   <link rel="icon" href="assets/images/favicons/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="assets/images/favicons/apple-touch-icon.png"><!-- 180×180 -->
 
-  <meta name="theme-color" content="#1ab394">
+  <meta name="theme-color" content="#0d8069">
 
   <link href="assets/lib/fancybox-6.1.13/fancybox.css" rel="stylesheet" />
   <link href="assets/lib/swiper-11.1.14/swiper-bundle.min.css" rel="stylesheet" />

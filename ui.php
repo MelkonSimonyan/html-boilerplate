@@ -16,7 +16,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
   <?php require 'blocks/header.php'; ?>
 
-  <div class="content">
+  <main class="content" id="main">
     <div class="container">
 
       <div class="ui-intro">
@@ -42,7 +42,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Colors -->
       <section class="ui-section" id="colors">
-        <div class="ui-title">Colors and variables <span>var.css</span></div>
+        <h2 class="ui-title">Colors and variables <span>var.css</span></h2>
         <div class="ui-swatches">
           <?php foreach (['--c-accent', '--c-accent2', '--c-error', '--txt-primary', '--txt-secondary', '--bg-primary', '--border-primary'] as $var) : ?>
             <div class="ui-swatch">
@@ -60,7 +60,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Typography -->
       <section class="ui-section" id="typography">
-        <div class="ui-title">Typography <span>h1–h6, .h1–.h6, .text</span></div>
+        <h2 class="ui-title">Typography <span>h1–h6, .h1–.h6, .text</span></h2>
 
         <div class="ui-subtitle">Headings (outside .text)</div>
         <h1>Heading H1</h1>
@@ -95,7 +95,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Links -->
       <section class="ui-section" id="links">
-        <div class="ui-title">Links <span>a, .text a</span></div>
+        <h2 class="ui-title">Links <span>a, .text a</span></h2>
         <p><a href="#links">Plain link (inherits color, no underline)</a></p>
         <div class="text">
           <p><a href="#links">Link inside .text</a> — accent color, underline, hover/active states.</p>
@@ -109,7 +109,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Lists -->
       <section class="ui-section" id="lists">
-        <div class="ui-title">Lists <span>.text ul / ol</span></div>
+        <h2 class="ui-title">Lists <span>.text ul / ol</span></h2>
         <div class="text">
           <ul>
             <li>Lorem ipsum dolor sit amet</li>
@@ -142,16 +142,16 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Tables -->
       <section class="ui-section" id="tables">
-        <div class="ui-title">Tables <span>.table, .table-wrapper, .text table</span></div>
+        <h2 class="ui-title">Tables <span>.table, .table-wrapper, .text table</span></h2>
         <div class="table-wrapper">
           <table class="table">
             <thead>
               <tr>
-                <th>Title 1</th>
-                <th>Title 2</th>
-                <th>Title 3</th>
-                <th>Title 4</th>
-                <th>Title 5</th>
+                <th scope="col">Title 1</th>
+                <th scope="col">Title 2</th>
+                <th scope="col">Title 3</th>
+                <th scope="col">Title 4</th>
+                <th scope="col">Title 5</th>
               </tr>
             </thead>
             <tbody>
@@ -172,31 +172,33 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Media -->
       <section class="ui-section" id="media">
-        <div class="ui-title">Images and icons <span>img, .icon</span></div>
+        <h2 class="ui-title">Images and icons <span>img, .icon</span></h2>
         <p><img src="<?= ui_img(800, 300, 'img 800x300'); ?>" width="800" height="300" alt="Placeholder"></p>
         <div class="ui-row">
-          <svg class="icon" style="font-size: 16px">
+          <svg class="icon" aria-hidden="true" style="font-size: 16px">
             <use xlink:href="assets/images/svg-sprite.svg?<?= $ver; ?>#close"></use>
           </svg>
-          <svg class="icon" style="font-size: 24px">
+          <svg class="icon" aria-hidden="true" style="font-size: 24px">
             <use xlink:href="assets/images/svg-sprite.svg?<?= $ver; ?>#close"></use>
           </svg>
-          <svg class="icon" style="font-size: 40px; color: var(--c-accent)">
+          <svg class="icon" aria-hidden="true" style="font-size: 40px; color: var(--c-accent)">
             <use xlink:href="assets/images/svg-sprite.svg?<?= $ver; ?>#close"></use>
           </svg>
           <span class="ui-note">SVG sprite; size via <code>font-size</code>, color via <code>currentColor</code></span>
         </div>
         <div class="ui-row">
-          <button type="button" class="close-btn" aria-label="Close"><svg class="icon">
+          <button type="button" class="close-btn" aria-label="Close menu">
+            <svg class="icon" aria-hidden="true">
               <use xlink:href="assets/images/svg-sprite.svg?<?= $ver; ?>#close"></use>
-            </svg></button>
+            </svg>
+          </button>
           <span class="ui-note"><code>.close-btn</code></span>
         </div>
       </section>
 
       <!-- Buttons -->
       <section class="ui-section" id="buttons">
-        <div class="ui-title">Buttons <span>.btn, .btn--outline, .btn--block</span></div>
+        <h2 class="ui-title">Buttons <span>.btn, .btn--outline, .btn--block</span></h2>
         <div class="ui-row">
           <button type="button" class="btn">Button</button>
           <a href="#buttons" class="btn">Link .btn</a>
@@ -206,9 +208,9 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
         <div class="ui-row">
           <button type="button" class="btn" disabled>Disabled</button>
           <button type="button" class="btn btn--outline" disabled>Disabled outline</button>
-          <a href="#buttons" class="btn is-disabled">.is-disabled</a>
+          <a href="#buttons" class="btn is-disabled" aria-disabled="true" tabindex="-1">.is-disabled</a>
           <button type="button" class="btn">
-            <svg class="icon">
+            <svg class="icon" aria-hidden="true">
               <use xlink:href="assets/images/svg-sprite.svg?<?= $ver; ?>#close"></use>
             </svg>
             With icon
@@ -223,7 +225,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Forms -->
       <section class="ui-section" id="forms">
-        <div class="ui-title">Form elements <span>.form-group, .form-control, .form-select, .form-check, .form-floating</span></div>
+        <h2 class="ui-title">Form elements <span>.form-group, .form-control, .form-select, .form-check, .form-floating</span></h2>
 
         <div class="ui-cols">
           <form action="#" onsubmit="return false">
@@ -361,17 +363,17 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Validation -->
       <section class="ui-section" id="validation">
-        <div class="ui-title">Validation and submission <span>.js-validation-form → sendForm() → blocks/formHandler.php</span></div>
+        <h2 class="ui-title">Validation and submission <span>.js-validation-form → sendForm() → blocks/formHandler.php</span></h2>
         <div class="ui-cols">
           <form action="blocks/formHandler.php" method="post" class="js-validation-form" novalidate>
             <div class="ui-subtitle">jQuery Validation + AJAX (only if native validation is not enough)</div>
             <div class="form-group">
               <label class="form-label" for="v-name">Name *</label>
-              <input type="text" class="form-control" id="v-name" name="name" required minlength="2">
+              <input type="text" class="form-control" id="v-name" name="name" autocomplete="name" required minlength="2">
             </div>
             <div class="form-group">
               <label class="form-label" for="v-email">Email *</label>
-              <input type="email" class="form-control" id="v-email" name="email" required>
+              <input type="email" class="form-control" id="v-email" name="email" autocomplete="email" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="v-msg">Message</label>
@@ -391,11 +393,11 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
           <form action="blocks/formHandler.php" method="post" class="callback-form">
             <div class="ui-subtitle">AJAX + native browser validation, no plugin (.callback-form) — preferred</div>
             <div class="form-group form-floating">
-              <input type="text" class="form-control" id="cb-name" name="name" placeholder=" " required>
+              <input type="text" class="form-control" id="cb-name" name="name" autocomplete="name" placeholder=" " required>
               <label class="form-label" for="cb-name">Name</label>
             </div>
             <div class="form-group form-floating">
-              <input type="tel" class="form-control" id="cb-tel" name="phone" placeholder=" " required>
+              <input type="tel" class="form-control" id="cb-tel" name="phone" autocomplete="tel" placeholder=" " required>
               <label class="form-label" for="cb-tel">Phone</label>
             </div>
             <button type="submit" class="btn btn--outline">Call me back</button>
@@ -406,7 +408,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Popups -->
       <section class="ui-section" id="popups">
-        <div class="ui-title">Popups <span>Fancybox, .popup-window, .close-btn</span></div>
+        <h2 class="ui-title">Popups <span>Fancybox, .popup-window, .close-btn</span></h2>
         <div class="ui-row">
           <button type="button" class="btn" data-fancybox data-src="#popup-inline">Inline popup</button>
           <button type="button" class="btn btn--outline" data-fancybox data-src="#popup-form">Popup with a form</button>
@@ -420,19 +422,19 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
           <?php endforeach; ?>
         </div>
 
-        <div id="popup-inline" class="popup-window" style="display: none">
-          <h2 class="h3">Inline popup</h2>
+        <div id="popup-inline" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="popup-inline-title" style="display: none">
+          <h2 class="h3" id="popup-inline-title">Inline popup</h2>
           <div class="text">
             <p><?= $lorem; ?></p>
           </div>
           <button type="button" class="btn" data-fancybox-close>Close</button>
         </div>
 
-        <div id="popup-form" class="popup-window" style="display: none">
-          <h2 class="h3">Popup with a form</h2>
+        <div id="popup-form" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="popup-form-title" style="display: none">
+          <h2 class="h3" id="popup-form-title">Popup with a form</h2>
           <form action="blocks/formHandler.php" method="post" class="js-validation-form" novalidate>
             <div class="form-group">
-              <input type="email" class="form-control" name="email" placeholder="Email *" required>
+              <input type="email" class="form-control" name="email" placeholder="Email *" aria-label="Email" autocomplete="email" required>
             </div>
             <button type="submit" class="btn btn--block">Submit</button>
           </form>
@@ -441,11 +443,11 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Scrollbars -->
       <section class="ui-section" id="scrollbars">
-        <div class="ui-title">Scrollbars <span>.has-scrollbar, .has-scrollbar--direction-x</span></div>
+        <h2 class="ui-title">Scrollbars <span>.has-scrollbar, .has-scrollbar--direction-x</span></h2>
         <div class="ui-cols">
           <div>
             <div class="ui-subtitle">Vertical</div>
-            <div class="has-scrollbar ui-scroll-y">
+            <div class="has-scrollbar ui-scroll-y" tabindex="0" role="region" aria-label="Scrollable text">
               <div class="text">
                 <?php for ($i = 0; $i < 6; $i++) : ?>
                   <p><?= $lorem; ?></p>
@@ -455,7 +457,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
           </div>
           <div>
             <div class="ui-subtitle">Horizontal</div>
-            <div class="has-scrollbar has-scrollbar--direction-x">
+            <div class="has-scrollbar has-scrollbar--direction-x" tabindex="0" role="region" aria-label="Scrollable items">
               <div class="ui-scroll-x">
                 <?php for ($i = 1; $i <= 12; $i++) : ?>
                   <div class="ui-scroll-x__item">Item <?= $i; ?></div>
@@ -469,7 +471,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Slider -->
       <section class="ui-section" id="slider">
-        <div class="ui-title">Slider <span>Swiper</span></div>
+        <h2 class="ui-title">Slider <span>Swiper</span></h2>
         <div class="swiper ui-slider">
           <div class="swiper-wrapper">
             <?php foreach ([['#1ab394', '1'], ['#7c6bb3', '2'], ['#e0795e', '3'], ['#3b82c4', '4'], ['#c4a43b', '5']] as $img) : ?>
@@ -487,7 +489,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- Mobile menu -->
       <section class="ui-section" id="menu">
-        <div class="ui-title">Mobile menu <span>.menu-btn, .mob-menu — below 768px</span></div>
+        <h2 class="ui-title">Mobile menu <span>.menu-btn, .mob-menu — below 768px</span></h2>
         <p>Resize the browser window below 768px — a burger button appears in the header and the menu slides in from the left.</p>
         <div class="ui-row">
           <button type="button" class="btn btn--outline" id="ui-menu-open">Open menu (if width &lt; 768px)</button>
@@ -497,7 +499,7 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
 
       <!-- States and utilities -->
       <section class="ui-section" id="states">
-        <div class="ui-title">States and utilities <span>scripts.js</span></div>
+        <h2 class="ui-title">States and utilities <span>scripts.js</span></h2>
         <div class="ui-row">
           <button type="button" class="btn" id="ui-loader">Show loader (1.5s)</button>
           <button type="button" class="btn btn--outline" id="ui-noscroll">noScroll for 2s</button>
@@ -511,9 +513,9 @@ $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam feugia
       </section>
 
     </div>
-  </div>
+  </main>
 
-  <div class="ui-state" id="ui-state"></div>
+  <div class="ui-state" id="ui-state" aria-hidden="true"></div>
 
   <?php require 'blocks/footer.php'; ?>
   <?php require 'blocks/foot.php'; ?>
