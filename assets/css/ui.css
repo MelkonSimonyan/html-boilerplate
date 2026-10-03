@@ -1,0 +1,191 @@
+/* Demo-only styles for ui.php. Do not copy to new projects. */
+
+.ui-intro {
+  margin-bottom: 40px;
+}
+
+.ui-note {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--txt-secondary);
+}
+
+.ui-note code,
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  padding: 1px 5px;
+  border-radius: 2px;
+  background: rgba(128, 128, 128, 0.15);
+}
+
+.ui-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ui-nav a {
+  font-size: 14px;
+  padding: 4px 12px;
+  border: 1px solid var(--border-primary);
+  border-radius: 999px;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--c-accent2);
+      border-color: var(--c-accent2);
+    }
+  }
+}
+
+.ui-section {
+  padding: 40px 0;
+  border-top: 1px solid var(--border-primary);
+}
+
+.ui-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--c-accent);
+  margin-bottom: 24px;
+}
+
+.ui-title span {
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--txt-secondary);
+  margin-left: 8px;
+}
+
+.ui-subtitle {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--txt-secondary);
+  margin: 24px 0 12px;
+}
+
+.ui-cols > * > .ui-subtitle:first-child,
+.ui-cols > .ui-subtitle:first-child {
+  margin-top: 0;
+}
+
+.ui-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: var(--text-space);
+}
+
+.ui-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: var(--text-space);
+
+  @media (max-width: 767.98px) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.ui-cols > * {
+  min-width: 0;
+}
+
+.ui-demo {
+  padding: 20px;
+  border: 1px dashed var(--border-primary);
+  margin-bottom: var(--text-space);
+}
+
+.ui-demo--narrow {
+  max-width: 300px;
+}
+
+.ui-spacer {
+  height: 60vh;
+}
+
+/* Colors */
+.ui-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: var(--text-space);
+}
+
+.ui-swatch__color {
+  height: 64px;
+  border: 1px solid var(--border-primary);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.ui-swatch__name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ui-swatch__value {
+  font-size: 12px;
+  color: var(--txt-secondary);
+  word-break: break-all;
+}
+
+/* Scrollbars */
+.ui-scroll-y {
+  max-height: 220px;
+  border: 1px solid var(--border-primary);
+  padding: 12px;
+}
+
+.ui-scroll-x {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  padding-bottom: 4px;
+}
+
+.ui-scroll-x__item {
+  width: 140px;
+  padding: 24px 0;
+  text-align: center;
+  border: 1px solid var(--border-primary);
+}
+
+/* Slider */
+.ui-slider {
+  max-width: 600px;
+  --swiper-theme-color: #fff;
+  --swiper-pagination-bullet-inactive-color: #fff;
+}
+
+.ui-slider img {
+  width: 100%;
+}
+
+/* State badge */
+.ui-state {
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  z-index: 9999;
+  max-width: calc(100vw - 16px);
+  padding: 8px 12px;
+  font:
+    12px/16px ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  pointer-events: none;
+}

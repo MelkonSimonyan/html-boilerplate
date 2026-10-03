@@ -77,23 +77,23 @@ const noScroll = {
 /* jQuery Form Validation Setup */
 (function () {
   $.extend($.validator.messages, {
-    required: "Обязательное поле",
-    remote: "Исправьте это поле",
-    email: "Некорректный e-mail",
-    url: "Некорректный url",
-    date: "Некорректная дата",
-    dateISO: "Некорректная дата (ISO)",
-    number: "Некорректное число",
-    digits: "Cимволы 0-9",
-    creditcard: "Некорректный номер карты",
-    equalTo: "Не совпадает с предыдущим значением",
-    accept: "Недопустимое расширение",
-    maxlength: $.validator.format("Максимум {0} символов"),
-    minlength: $.validator.format("Минимум {0} символов"),
-    rangelength: $.validator.format("Минимум {0} и максимум {1} символов"),
-    range: $.validator.format("Допустимо значение между {0} и {1}"),
-    max: $.validator.format("Допустимо значение меньше или равное {0}"),
-    min: $.validator.format("Допустимо значение больше или равное {0}"),
+    required: "This field is required",
+    remote: "Please fix this field",
+    email: "Please enter a valid email address",
+    url: "Please enter a valid URL",
+    date: "Please enter a valid date",
+    dateISO: "Please enter a valid date (ISO)",
+    number: "Please enter a valid number",
+    digits: "Digits only (0-9)",
+    creditcard: "Please enter a valid card number",
+    equalTo: "Values do not match",
+    accept: "Invalid file extension",
+    maxlength: $.validator.format("Maximum {0} characters"),
+    minlength: $.validator.format("Minimum {0} characters"),
+    rangelength: $.validator.format("Minimum {0} and maximum {1} characters"),
+    range: $.validator.format("Value must be between {0} and {1}"),
+    max: $.validator.format("Value must be less than or equal to {0}"),
+    min: $.validator.format("Value must be greater than or equal to {0}"),
   });
 
   $.validator.setDefaults({
@@ -128,7 +128,7 @@ async function sendForm(form) {
     Fancybox.show(
       [
         {
-          src: data.message,
+          html: data.message,
           type: "html",
         },
       ],
@@ -141,7 +141,7 @@ async function sendForm(form) {
     form.reset();
   } catch (error) {
     console.error("Form submission failed:", error);
-    alert("Не удалось отправить форму. Попробуйте ещё раз.");
+    alert("Failed to send the form. Please try again.");
   } finally {
     htmlEl.classList.remove("has-loader");
   }

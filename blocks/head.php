@@ -24,6 +24,7 @@
   <link href="assets/css/style.css?<?= $ver; ?>" rel="stylesheet" />
   <link href="assets/css/media.css?<?= $ver; ?>" rel="stylesheet" />
 
+  <!-- jQuery is needed ONLY for the jQuery Validation plugin. Remove both if the plugin is not used. -->
   <script src="assets/lib/jquery-3.7.1/jquery-3.7.1.min.js"></script>
   <script>
     const ver = '<?= $ver; ?>';
