@@ -1,0 +1,19 @@
+:root {
+  --font-main: "Open Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --c-accent: #1ab394;
+  --c-accent2: #7c6bb3;
+  --c-error: #ff0000;
+
+  --txt-primary: #333333;
+  --txt-secondary: #aaaaaa;
+
+  --bg-primary: #ffffff;
+
+  --border-primary: #cccccc;
+
+  --text-space: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+}
